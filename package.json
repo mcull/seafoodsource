@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "seafood-source",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby and TailwindCSS",
+  "description": "POC for a Climatebase capstone project",
   "version": "0.3.0",
-  "author": "Kostas Vrouvas <hello@kosvrouvas.com>",
+  "author": "Marc CUll <marc.cull@gmail.com>",
   "dependencies": {
     "autoprefixer": "^10.4.7",
     "gatsby": "^4.24.4",
@@ -32,7 +32,7 @@
     "tailwindcss": "^3.2.0"
   },
   "keywords": [
-    "gatsby"
+    "sustainable seafood"
   ],
   "license": "MIT",
   "scripts": {
@@ -46,9 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kosvrouvas/gatsby-tailwindcss-starter"
+    "url": "https://github.com/mcull/seafoodsource"
   },
   "bugs": {
-    "url": "https://github.com/kosvrouvas/gatsby-tailwindcss-starter/issues"
+    "url": "https://github.com/mcull/seafoodsource/issues"
   }
 }
