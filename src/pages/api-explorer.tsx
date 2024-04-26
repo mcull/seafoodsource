@@ -3,6 +3,7 @@ import { PageProps, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import JSONPretty from 'react-json-pretty';
 
 const ApiExplorer = (props: PageProps) => {
   const [data, setData] = useState(null);
@@ -30,8 +31,8 @@ const ApiExplorer = (props: PageProps) => {
       <h1>Global Fishing Watch</h1>
 
       <div>here's what's returned from calling Global Fishing Watch API:</div>
-      <pre>https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=7831410&datasets[0]=public-global-vessel-identity:latest</pre>
-      <div>{ data && JSON.stringify(data) }</div>
+      <pre className="text-wrap">https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=7831410&datasets[0]=public-global-vessel-identity:latest</pre>
+      <JSONPretty id="json-pretty" data={data}></JSONPretty>
     </Layout>
   )
 }
