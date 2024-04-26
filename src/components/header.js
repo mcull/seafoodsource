@@ -57,6 +57,12 @@ function Header({ siteTitle }) {
           >
             page 4
           </Link>
+          <Link
+            to={`/api-explorer`}
+            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
+          >
+            API Explorer
+          </Link>
         </div>
       </div>
     </nav>
