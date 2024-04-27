@@ -7,9 +7,12 @@ export default async function handler(req, res) {
     
     const species = req.params.species
     
-    const prompt = `I am considering ordering ${species} for dinner, but I am not sure if it is sustainable. Can you provide me with some information about the sustainability of ${species}? What are some questions I should ask the restaurant about the source of the ${species} and how will I recognize sustainable versus non-sustainable responses? 
+    const prompt = `I am considering ordering ${species} for dinner, but I am not sure if it is sustainable. Can you provide me with some information about the sustainability of ${species}}? What are some questions I should ask the restaurant about the source of the ${species} and how will I recognize sustainable versus non-sustainable responses? 
 
-    Give your response as json in the following format: { "sustainable": true, "reason": "[reason]", "questions": [{question: "Where was the fish caught?", sustainableAnswers: [sustainable locations], nonsustainableAnswers: ["I don't know", nonsustainable locations]}, {question: "What fishing method was used?", sustainableAnswers: [sustainable methods], nonsustainableAnswers: [nonsustainable methods]}, {question: "Is the fish certified by a sustainable seafood certification program?", sustainableAnswers: ["yes"], nonsustainableAnswers: ["I don't know","No."]}`;
+    Give your response as valid json with no other formatting. 
+    EXAMPLE  INPUT: "tuna"
+    EXAMPLE OUTPUT: 
+    { "sustainable": true, "reason": "[reason]", "questions": [{question: "Where was the fish caught?", sustainableAnswers: [sustainable locations], nonsustainableAnswers: ["I don't know", nonsustainable locations]}, {question: "What fishing method was used?", sustainableAnswers: [sustainable methods], nonsustainableAnswers: [nonsustainable methods]}, {question: "Is the fish certified by a sustainable seafood certification program?", sustainableAnswers: ["yes"], nonsustainableAnswers: ["I don't know","No."]}`;
     
     
     try {

@@ -132,3 +132,6 @@ dist
 # my stuff
 .DS_Store
 /public
+.env.development
+# Local Netlify folder
+.netlify
