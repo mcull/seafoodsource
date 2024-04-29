@@ -51,10 +51,10 @@ const Menu = (props: PageProps) => {
         <div>{!photo && typeof window !== "undefined" && (
         <Webcam
           audio={false}
-          height={400}
+          height={600}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          width={600}
+          width={360}
           videoConstraints={videoConstraints}
         />
         )}</div>
