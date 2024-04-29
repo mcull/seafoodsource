@@ -10,7 +10,7 @@ const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
     width: 600,
-    height: 400,
+    height: 360,
     facingMode: "user"
     //facingMode: { exact: "environment" }
   };
