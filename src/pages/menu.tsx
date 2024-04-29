@@ -9,6 +9,7 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
+    aspectRatio: 4/3,
     facingMode: "user"
     //facingMode: { exact: "environment" }
   };
@@ -46,11 +47,10 @@ const Menu = (props: PageProps) => {
                                <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
         }</div>
         <div>{photo && (<><div className="flex">{spinner()}<span>Processing photo... (not really) </span></div><br/><img src={photo}/></>)}</div>
-        <div>{!photo && typeof window !== "undefined" && (
+        <div>{!photo && (
         <Webcam
           audio={false}
           ref={webcamRef}
-          style={{aspectRatio: "9/16"}}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
         />
