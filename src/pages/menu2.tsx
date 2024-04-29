@@ -9,8 +9,8 @@ import SEO from "../components/seo"
 const Menu2 = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 720,
+    height: 1280,
     facingMode: "user"
     //facingMode: { exact: "environment" }
   };
