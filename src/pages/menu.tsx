@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    width: 800,
+    width: 1200,
     height: 800,
     facingMode: { exact: "environment" }
   };
@@ -42,7 +42,7 @@ const Menu = (props: PageProps) => {
 
     return (
       <>
-      <div className="block sm:hidden">
+      <div className="block sm:hidden w-full">
         <div> {photo == null ? <button className="my-2 rounded-full bg-indigo-50 p-3 text-indigo-900 font-bold" onClick={capture}>📷 Capture photo</button> : 
                                <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
         }</div>
