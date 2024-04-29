@@ -9,8 +9,8 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    width: 800,
-    height: 1200,
+    width: 400,
+    height: 300,
     facingMode: { exact: "environment" }
   };
 
@@ -42,7 +42,7 @@ const Menu = (props: PageProps) => {
 
     return (
       <>
-      <div className="block sm:hidden w-full">
+      <div className="w-full">
         <div> {photo == null ? <button className="my-2 rounded-full bg-indigo-50 p-3 text-indigo-900 font-bold" onClick={capture}>📷 Capture photo</button> : 
                                <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
         }</div>
@@ -50,16 +50,13 @@ const Menu = (props: PageProps) => {
         <div>{!photo && typeof window !== "undefined" && (
         <Webcam
           audio={false}
-          height={window.innerHeight*.9}
+          height={videoConstraints.height}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          width={window.innerWidth*.9}
+          width={videoConstraints.width}
           videoConstraints={videoConstraints}
         />
         )}</div>
-      </div>
-      <div className="hidden sm:block">
-        Desktop (or landcape modeo) detected... can't use the camera so please upload a photo of a menu (or something)... 
       </div>
       </>
     );
