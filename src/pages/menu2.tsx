@@ -6,7 +6,7 @@ import Webcam from "react-webcam";
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Menu = (props: PageProps) => {
+const Menu2 = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
     width: 1280,
@@ -38,17 +38,11 @@ const Menu = (props: PageProps) => {
     React.useEffect(
       () => {
         const devices = navigator.mediaDevices.enumerateDevices().then((devices) => console.log(devices));
-
       });
 
     return (
       <>
-      <div className="w-full">
-        <div> {photo == null ? <button className="my-2 rounded-full bg-indigo-50 p-3 text-indigo-900 font-bold" onClick={capture}>📷 Capture photo</button> : 
-                               <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
-        }</div>
-        <div>{photo && (<><div className="flex">{spinner()}<span>Processing photo... (not really) </span></div><br/><img src={photo}/></>)}</div>
-        <div>{!photo && typeof window !== "undefined" && (
+        <div>{!photo && (
         <Webcam
           audio={false}
           height={videoConstraints.height}
@@ -58,15 +52,14 @@ const Menu = (props: PageProps) => {
           videoConstraints={videoConstraints}
         />
         )}</div>
-      </div>
       </>
     );
   };
   return(
     <Layout>
-      <SEO title="Page two" />
+      <SEO title="Menu" />
       {WebcamCapture()}
     </Layout>
   )}
 
-export default Menu
+export default Menu2
