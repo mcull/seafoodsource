@@ -10,6 +10,9 @@ const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
     aspectRatio: 4/3,
+    width: {max: 300 },
+    height: {max: 400},
+
     facingMode: "user"
     //facingMode: { exact: "environment" }
   };
