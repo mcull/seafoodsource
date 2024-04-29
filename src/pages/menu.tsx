@@ -7,9 +7,10 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const Menu = (props: PageProps) => {
+  console.log(props);
   const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 800,
+    height: 800,
     facingMode: { exact: "environment" }
   };
 
@@ -49,10 +50,10 @@ const Menu = (props: PageProps) => {
         <div>{!photo && (
         <Webcam
           audio={false}
-          height={720}
+          height={videoConstraints.height}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          width={1280}
+          width={videoConstraints.width}
           videoConstraints={videoConstraints}
         />
         )}</div>
