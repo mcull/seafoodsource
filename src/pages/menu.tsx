@@ -9,10 +9,6 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    aspectRatio: 4/3,
-    width: {max: 300 },
-    height: {max: 400},
-
     facingMode: "user"
     //facingMode: { exact: "environment" }
   };
@@ -54,6 +50,7 @@ const Menu = (props: PageProps) => {
         <Webcam
           audio={false}
           ref={webcamRef}
+          style={{width: "100%", height: "auto"}}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
         />
