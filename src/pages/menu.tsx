@@ -11,7 +11,8 @@ const Menu = (props: PageProps) => {
   const videoConstraints = {
     width: 400,
     height: 300,
-    facingMode: { exact: "environment" }
+    facingMode: "user"
+    //facingMode: { exact: "environment" }
   };
 
   const spinner = () => {
