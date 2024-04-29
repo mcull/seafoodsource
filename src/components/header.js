@@ -34,10 +34,10 @@ function Header({ siteTitle }) {
       >
         <div className="text-sm lg:flex-grow">
         <Link
-            to={`/page-1`}
+            to={`/find`}
             className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
           >
-            page 1
+            Find
           </Link>
           <Link
             to={`/page-2`}
