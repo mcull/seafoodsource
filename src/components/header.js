@@ -40,10 +40,10 @@ function Header({ siteTitle }) {
             Find
           </Link>
           <Link
-            to={`/page-2`}
+            to={`/menu`}
             className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
           >
-            page 2
+            Menu
           </Link>
           <Link
             to={`/page-3`}
