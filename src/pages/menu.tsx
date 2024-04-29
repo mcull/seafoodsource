@@ -9,8 +9,8 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    width: 1200,
-    height: 800,
+    width: 800,
+    height: 1200,
     facingMode: { exact: "environment" }
   };
 
@@ -47,13 +47,13 @@ const Menu = (props: PageProps) => {
                                <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
         }</div>
         <div>{photo && (<><div className="flex">{spinner()}<span>Processing photo... (not really) </span></div><br/><img src={photo}/></>)}</div>
-        <div>{!photo && (
+        <div>{!photo && typeof window !== "undefined" && (
         <Webcam
           audio={false}
-          height={videoConstraints.height}
+          height={window.innerWidth*.9}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          width={videoConstraints.width}
+          width={window.innerHeight*.9}
           videoConstraints={videoConstraints}
         />
         )}</div>
