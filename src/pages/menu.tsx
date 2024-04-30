@@ -9,8 +9,7 @@ import SEO from "../components/seo"
 const Menu = (props: PageProps) => {
   console.log(props);
   const videoConstraints = {
-    facingMode: "user"
-    //facingMode: { exact: "environment" }
+    facingMode: { exact: "environment" }
   };
 
   const spinner = () => {
@@ -21,6 +20,8 @@ const Menu = (props: PageProps) => {
       </svg>
     )
   }
+  
+  const [cameraFound, setCameraFound] = useState(true); 
 
   const WebcamCapture = () => {
     const webcamRef = React.useRef(null);
@@ -33,36 +34,32 @@ const Menu = (props: PageProps) => {
       [webcamRef]
     );
 
-    React.useEffect(
-      () => {
-        const devices = navigator.mediaDevices.enumerateDevices().then((devices) => console.log(devices));
-
-      });
-
     return (
-      <>
-      <div className="w-full">
-        <div> {photo == null ? <button className="my-2 rounded-full bg-indigo-50 p-3 text-indigo-900 font-bold" onClick={capture}>📷 Capture photo</button> : 
-                               <button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button>
-        }</div>
-        <div>{photo && (<><div className="flex">{spinner()}<span>Processing photo... (not really) </span></div><br/><img src={photo}/></>)}</div>
-        <div>{!photo && (
+
+      <div>
+        <div className="relative">{!photo ? (
         <Webcam
           audio={false}
           ref={webcamRef}
           style={{width: "100%", height: "auto"}}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
+          onUserMediaError={() => setCameraFound(false)}
         />
-        )}</div>
+        ) : <img src={photo}/>}</div>
+        
+         <div className="flex flex-row justify-center items-center"> {photo == null ? <div><button className="my-2 rounded-full bg-indigo-50 p-3 text-indigo-900 font-bold" onClick={capture}>📷 Capture photo</button></div> : 
+                                <div className="columns-2"><button className="my-2 p-2 rounded-full bg-indigo-50 text-indigo-900 font-bold" onClick={() => {setPhoto(null)}}>🚫 Clear photo</button><div className="flex pt-4">{spinner()}Processing...</div></div>
+        }</div>
       </div>
-      </>
     );
   };
+  
   return(
     <Layout>
       <SEO title="Page two" />
-      {WebcamCapture()}
+      <div className={cameraFound ? "block" : "hidden"}>{WebcamCapture()}</div>
+      {!cameraFound && (<div className="h-96">Oops, menu snapshot only works on devices with rear facing cameras at the moment!</div>)}
     </Layout>
   )}
 
