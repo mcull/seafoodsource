@@ -15,7 +15,7 @@ function Header({ siteTitle }) {
       <div className="block lg:hidden">
         <button
           onClick={() => toggleExpansion(!isExpanded)}
-          className="flex items-center px-3 py-2 text-slate-700 border border-white rounded hover:text-white hover:border-white"
+          className="flex items-center px-3 py-2 text-slate-500 border border-slate-500 rounded hover:text-slate-500 hover:border-slate-500"
         >
           <svg
             className="w-3 h-3 fill-current"
