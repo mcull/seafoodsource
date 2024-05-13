@@ -6,7 +6,7 @@ function Header({ siteTitle }) {
   const [isExpanded, toggleExpansion] = useState(false)
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-6 mb-6">
+    <nav className="flex flex-wrap items-center justify-between p-6">
       <div className="flex items-center content-center flex-grow ml-12 text-slate-700 place-content-center">
         <div className="text-xl font-semibold tracking-tight">
         <Link to={`/`} className="text-slate-700">{siteTitle}</Link>

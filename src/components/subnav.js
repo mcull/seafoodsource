@@ -4,21 +4,19 @@ import React, { useState } from "react"
 
 function SubNav({ page }) {
 return (
-    <>
-    <div className="flex flex-wrap items-center justify-between p-6 mb-6">
-        <div>
-            <Link to={`/`} className={`${page === 'restaurants' ? 'font-bold' : ''} block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500`}>
+    <div className="flex flex-wrap items-center justify-between mb-6 bg-black rounded-full">
+        <button className={`${page === 'restaurants' ? 'bg-purple-500' : ''} rounded-full`}>
+            <Link to={`/`} className="block px-6 py-2 text-white lg:inline-block hover:text-white rounded-full">
                 Seafood Restaurants
             </Link>
-        </div>
-        <div>
-        <Link to={`/search`} className={`${page === 'search' ? 'font-bold' : ''} block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500`}>
+        </button>
+        <button className={`${page === 'search' ? 'bg-purple-500' : ''} rounded-full` }>
+        <Link to={`/search`} className="block px-6 py-2 text-white lg:inline-block hover:text-white">
             Search Seafood
-        </Link></div>
+        </Link></button>
     </div>
-    </>
+    
 )
-
 }
 
 export default SubNav;
