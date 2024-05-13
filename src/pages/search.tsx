@@ -4,9 +4,11 @@ import { PageProps, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import SubNav from "../components/subnav"
 
-const ThirdPage = (props: PageProps) => (
+const Search = (props: PageProps) => (
   <Layout>
+    <SubNav page="search"></SubNav>
     <SEO title="Page three" />
     <h1>Hi from the third page</h1>
     <p>Welcome to page 3 ({props.path})</p>
@@ -14,4 +16,4 @@ const ThirdPage = (props: PageProps) => (
   </Layout>
 )
 
-export default ThirdPage
+export default Search

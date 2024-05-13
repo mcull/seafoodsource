@@ -4,6 +4,7 @@ import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import SubNav from "../components/subnav"
 
 type Restaurant = {
   name: string;
@@ -14,7 +15,7 @@ type Restaurant = {
   long: string;
 };
 
-const Find = (props: PageProps) => { 
+const Index = (props: PageProps) => { 
   const position = {lat: 37.7749, lng: -122.407234};
   const restaurants = [{
                         name: "Waterbar",
@@ -70,6 +71,7 @@ const Find = (props: PageProps) => {
 
   return (
     <Layout>
+      <SubNav page="restaurants"></SubNav>
       <div>
         {displayCurrentRestaurant()}
       </div>
@@ -84,4 +86,4 @@ const Find = (props: PageProps) => {
   )
 }
 
-export default Find
+export default Index
