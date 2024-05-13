@@ -6,16 +6,16 @@ function Header({ siteTitle }) {
   const [isExpanded, toggleExpansion] = useState(false)
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-6 mb-6 bg-gray-800">
-      <div className="flex items-center flex-shrink-0 mr-6 text-white">
-        <span className="text-xl font-semibold tracking-tight">
-        <Link to={`/`} className="text-white">{siteTitle}</Link>
-        </span>
+    <nav className="flex flex-wrap items-center justify-between p-6 mb-6">
+      <div className="flex items-center content-center flex-grow ml-12 text-slate-700 place-content-center">
+        <div className="text-xl font-semibold tracking-tight">
+        <Link to={`/`} className="text-slate-700">{siteTitle}</Link>
+        </div>
       </div>
       <div className="block lg:hidden">
         <button
           onClick={() => toggleExpansion(!isExpanded)}
-          className="flex items-center px-3 py-2 text-white border border-white rounded hover:text-white hover:border-white"
+          className="flex items-center px-3 py-2 text-slate-700 border border-white rounded hover:text-white hover:border-white"
         >
           <svg
             className="w-3 h-3 fill-current"
@@ -32,36 +32,30 @@ function Header({ siteTitle }) {
           isExpanded ? `block` : `hidden`
         } w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
       >
-        <div className="text-sm lg:flex-grow">
+        <div className="text-sm lg:flex-grow text-right">
         <Link
-            to={`/find`}
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
+            to={`/`}
+            className="block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500"
           >
-            Find
+            Home
           </Link>
           <Link
-            to={`/menu`}
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
+            to={`#`}
+            className="block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500"
           >
-            Menu
+            Seafood A-Z
           </Link>
           <Link
-            to={`/page-3`}
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
+            to={`#`}
+            className="block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500"
           >
-            page 3
+            About Us / Sustainablilty
           </Link>
           <Link
-            to={`/page-4`}
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
+            to={`#`}
+            className="block mt-4 mr-4 text-slate-700 lg:inline-block lg:mt-0 hover:text-slate-500"
           >
-            page 4
-          </Link>
-          <Link
-            to={`/api-explorer`}
-            className="block mt-4 mr-4 text-white lg:inline-block lg:mt-0 hover:text-white"
-          >
-            API Explorer
+            FAQ
           </Link>
         </div>
       </div>
