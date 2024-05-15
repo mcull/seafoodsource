@@ -96,7 +96,7 @@ const Index = (props: PageProps) => {
       <div className="w-full aspect-square">
         <APIProvider apiKey="AIzaSyB7zqm5DZe69b4yhNABx90krs5Ck4u2MYE">
           <Map
-            defaultZoom={11}
+            defaultZoom={12}
             defaultCenter={sanFrancisco}
             gestureHandling={'greedy'}
             disableDefaultUI={true}
