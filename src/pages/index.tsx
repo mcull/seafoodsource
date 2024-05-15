@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { PageProps, Link } from "gatsby"
-import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
+import {APIProvider, Map, Marker, ControlPosition} from '@vis.gl/react-google-maps';
+
+import {CustomMapControl} from '../components/map-control';
+import MapHandler from '../components/map-handler';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -15,8 +18,14 @@ type Restaurant = {
   long: string;
 };
 
+const DEFAULT_PLACE = 
+  { name: "San Francisco",
+    lat: 37.7749,
+    long: -122.407234
+  }
+
 const Index = (props: PageProps) => { 
-  const position = {lat: 37.7749, lng: -122.407234};
+  
   const restaurants = [{
                         name: "Waterbar",
                         address: "399 The Embarcadero, San Francisco, CA 94105",
@@ -45,6 +54,11 @@ const Index = (props: PageProps) => {
   ];
 
   const [currentRestaurant, setCurrentRestaurant] = useState<Restaurant | null>(null); 
+  const sanFrancisco = {lat: 37.7749, lng: -122.407234};
+  const [selectedPlace, setSelectedPlace] =
+    useState<google.maps.places.PlaceResult | null>(null);
+
+  const position = {lat: DEFAULT_PLACE.lat, lng: DEFAULT_PLACE.long};
 
   const Markers = () => {
     return restaurants.map((restaurant, index) => (
@@ -69,18 +83,33 @@ const Index = (props: PageProps) => {
     );
   }
 
+  const otherRestaurantsHeader = () => {
+    if (!selectedPlace) {
+      return DEFAULT_PLACE.name;
+    }
+    return selectedPlace.formatted_address;
+  }
+
   return (
     <Layout>
       <SubNav page="restaurants"></SubNav>
-      <div>
-        {displayCurrentRestaurant()}
-      </div>
-      <div className="h-screen">
-        <APIProvider apiKey='AIzaSyB7zqm5DZe69b4yhNABx90krs5Ck4u2MYE'>
-        <Map defaultCenter={position} defaultZoom={12}>
-          { Markers() }
-        </Map>
+      <div className="w-full aspect-square">
+        <APIProvider apiKey="AIzaSyB7zqm5DZe69b4yhNABx90krs5Ck4u2MYE">
+          <Map
+            defaultZoom={11}
+            defaultCenter={sanFrancisco}
+            gestureHandling={'greedy'}
+            disableDefaultUI={true}
+          />
+          <CustomMapControl
+            controlPosition={ControlPosition.TOP}
+            onPlaceSelect={setSelectedPlace}
+          />
+      <MapHandler place={selectedPlace} />
       </APIProvider>
+      </div>
+      <div>
+        <div>Other seafood restauraunts in {otherRestaurantsHeader()}</div>
       </div>
     </Layout>
   )
