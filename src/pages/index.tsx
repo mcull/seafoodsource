@@ -90,24 +90,33 @@ const Index = (props: PageProps) => {
     return selectedPlace.formatted_address;
   }
 
+  const drawMap = () => {
+    if (typeof window !== `undefined` && typeof document !== `undefined`) {
+      return (
+        <div className="w-full aspect-square">
+          <APIProvider apiKey="AIzaSyB7zqm5DZe69b4yhNABx90krs5Ck4u2MYE">
+            <Map
+              defaultZoom={12}
+              defaultCenter={sanFrancisco}
+              gestureHandling={'greedy'}
+              disableDefaultUI={true}
+            />
+            <CustomMapControl
+              controlPosition={ControlPosition.TOP}
+              onPlaceSelect={setSelectedPlace}
+            />
+            <MapHandler place={selectedPlace} />
+          </APIProvider>
+        </div>
+      )
+    }
+    return null;
+  }
+
   return (
     <Layout>
       <SubNav page="restaurants"></SubNav>
-      <div className="w-full aspect-square">
-        <APIProvider apiKey="AIzaSyB7zqm5DZe69b4yhNABx90krs5Ck4u2MYE">
-          <Map
-            defaultZoom={12}
-            defaultCenter={sanFrancisco}
-            gestureHandling={'greedy'}
-            disableDefaultUI={true}
-          />
-          <CustomMapControl
-            controlPosition={ControlPosition.TOP}
-            onPlaceSelect={setSelectedPlace}
-          />
-      <MapHandler place={selectedPlace} />
-      </APIProvider>
-      </div>
+      {drawMap()}
       <div>
         <div>Other seafood restauraunts in {otherRestaurantsHeader()}</div>
       </div>
