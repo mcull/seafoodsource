@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react"
 import { PageProps, Link } from "gatsby"
 import {APIProvider, Map, Marker, ControlPosition} from '@vis.gl/react-google-maps';
 import axios from 'axios';
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
-
 import {CustomMapControl} from '../components/map-control';
 import MapHandler from '../components/map-handler';
 import RestaurantAccordian from '../components/restaurant-accordian';
+import { Button } from "flowbite-react";
+import { FaCameraRetro } from "react-icons/fa";
+import { navigate } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SubNav from "../components/subnav"
+import { StaticImage } from "gatsby-plugin-image"
 
 const DEFAULT_PLACE = 
   { name: "San Francisco",
@@ -117,10 +115,23 @@ const Index = (props: PageProps) => {
     <Layout>
       <SubNav page="restaurants"></SubNav>
       {drawMap()}
-      <div>
-        <div>Other seafood restauraunts in {otherRestaurantsHeader()}</div>
+      <div className="my-6">
+        Recommendations by <StaticImage src="../images/oceanwise-logo.png" alt="Oceanwise" height={32} /> and <a href="ocean.org">Ocean.org</a> 
+      </div>
+      <hr />
+      <div className="my-6">
+        <div >Other seafood restauraunts in {otherRestaurantsHeader()}</div>
         <RestaurantAccordian restaurants={restaurantList} />
       </div>
+      <hr />
+      
+      See a menu? Let us analyze it for good choices:
+      <div className="w-full grid place-content-center my-6">
+        <Button pill color="purple" onClick={()=>{navigate("/menu")}}>
+          <FaCameraRetro className="mx-2 mt-1" /> Open camera
+        </Button>
+      </div>
+      
     </Layout>
   )
 }

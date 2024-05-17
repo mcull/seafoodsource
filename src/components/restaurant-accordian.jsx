@@ -10,7 +10,7 @@ const RestaurantAccordion = ({restaurants}) => {
 
   console.log(restaurants);
   return (
-    <Accordion>
+    <Accordion className="mt-6">
         {restaurants.map((restaurant, index) => (
           
           <Accordion.Panel>
