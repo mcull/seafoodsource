@@ -8,7 +8,7 @@ const RestaurantAccordion = ({restaurants}) => {
         {restaurants.map((restaurant, index) => (
           
           <Accordion.Panel>
-            <Accordion.Title className="text-sm bg-orange-500">{restaurant.name}</Accordion.Title>
+            <Accordion.Title className="text-sm" style={{backgroundColor: "orange"}}>{restaurant.name}</Accordion.Title>
             <Accordion.Content>
               <div>{restaurant.formatted_address}</div>
               <div><span className="font-bold">Open now?</span> {restaurant.opening_hours.open_now ? "yes" : "no"}</div>
