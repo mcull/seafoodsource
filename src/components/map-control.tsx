@@ -15,7 +15,7 @@ export const CustomMapControl = ({
 
   return (
     <MapControl position={controlPosition}>
-      <div className="autocomplete-control mt-6 box-border w-80 -ml-10 border-slate-500">
+      <div className="autocomplete-control mt-6 box-border w-80 -ml-5 border-slate-500">
         <PlaceAutocompleteClassic onPlaceSelect={onPlaceSelect} />
       </div>
     </MapControl>

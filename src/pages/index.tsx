@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { PageProps, Link } from "gatsby"
 import {APIProvider, Map, Marker, ControlPosition} from '@vis.gl/react-google-maps';
+import axios from 'axios';
 
 import {CustomMapControl} from '../components/map-control';
 import MapHandler from '../components/map-handler';
@@ -53,10 +54,10 @@ const Index = (props: PageProps) => {
 
   ];
 
-  const [currentRestaurant, setCurrentRestaurant] = useState<Restaurant | null>(null); 
   const sanFrancisco = {lat: 37.7749, lng: -122.407234};
   const [selectedPlace, setSelectedPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
+  const [restaurantList, setRestaurantList] = useState([]);
 
   const position = {lat: DEFAULT_PLACE.lat, lng: DEFAULT_PLACE.long};
 
@@ -65,22 +66,9 @@ const Index = (props: PageProps) => {
       <Marker
         key={index}
         position={{ lat: parseFloat(restaurant.lat), lng: parseFloat(restaurant.long) }}
-        onClick={() => setCurrentRestaurant(restaurant)}
+        onClick={() => ""}
       />
     ));
-  }
-
-  const displayCurrentRestaurant = () => {
-    if (!currentRestaurant) {
-      return null;
-    }
-    return (
-      <div className="text-sm">
-          <div className="text-bold text-lg"><a href="{currentRestaurant.url}">{currentRestaurant.name}</a></div>
-          <div>📍{currentRestaurant.address}</div>
-          <div>"{currentRestaurant.statement}"</div>
-      </div>
-    );
   }
 
   const otherRestaurantsHeader = () => {
@@ -89,6 +77,45 @@ const Index = (props: PageProps) => {
     }
     return selectedPlace.formatted_address;
   }
+
+  useEffect(() => {
+    console.log("using effect")
+    let lat = DEFAULT_PLACE.lat;
+    let long = DEFAULT_PLACE.long;
+    if (selectedPlace !== null) {
+      lat = selectedPlace.geometry?.location?.lat() ?? 0;
+      long = selectedPlace.geometry?.location?.lng() ?? 0;
+    }
+    
+    const query = `/api/places/all-restaurants?lat=${lat}&long=${long}`;
+
+    axios.get(query)
+        .then(function (response) {
+            // handle success
+            setRestaurantList(response.data.results);
+        })
+        .catch(function (error) {
+            // handle error
+            return (<>error! ${error}</>)
+        })
+        .finally(function () {
+            // always executed
+        });
+    
+  }, [selectedPlace]);
+
+  const otherRestaurants = () => {
+
+    console.log('restaurantList in other restaurants...');
+    console.log(restaurantList);
+    return(
+      <>
+        {restaurantList.map((data: any, index: number) => (
+          <div key={index}>{data.name}</div>
+        ))}
+      </>
+    )         
+}
 
   const drawMap = () => {
     if (typeof window !== `undefined` && typeof document !== `undefined`) {
@@ -119,6 +146,7 @@ const Index = (props: PageProps) => {
       {drawMap()}
       <div>
         <div>Other seafood restauraunts in {otherRestaurantsHeader()}</div>
+        {otherRestaurants()}
       </div>
     </Layout>
   )
