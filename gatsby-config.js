@@ -1,4 +1,5 @@
 module.exports = {
+  
   siteMetadata: {
     title: `Seafood Source`,
     description: `POC capstone project for climatebase fellowship. A platform for sustainable seafood sourcing.`,

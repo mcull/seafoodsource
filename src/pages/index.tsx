@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react"
 import { PageProps, Link } from "gatsby"
 import {APIProvider, Map, Marker, ControlPosition} from '@vis.gl/react-google-maps';
 import axios from 'axios';
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
 
 import {CustomMapControl} from '../components/map-control';
 import MapHandler from '../components/map-handler';
+import RestaurantAccordian from '../components/restaurant-accordian';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SubNav from "../components/subnav"
-
-type Restaurant = {
-  name: string;
-  address: string;
-  statement: string;
-  url: string;
-  lat: string;
-  long: string;
-};
 
 const DEFAULT_PLACE = 
   { name: "San Francisco",
@@ -26,34 +23,7 @@ const DEFAULT_PLACE =
   }
 
 const Index = (props: PageProps) => { 
-  
-  const restaurants = [{
-                        name: "Waterbar",
-                        address: "399 The Embarcadero, San Francisco, CA 94105",
-                        statement: "Waterbar strives to ensure the highest standard of environmentally safe, sustainably-sourced seafood from both local and international waters, respecting seasonality and the natural essence of the sea.",
-                        url:"https://www.waterbarsf.com/",
-                        lat: "37.789700",
-                        long: "-122.388367"
-                      },
-                      {
-                        name: "Fog Harbor",
-                        address: "Pier 39, San Francisco, CA 94133",
-                        statement: "Fog Harbor is proud to be the first restaurant on Fisherman’s Wharf to offer a 100% sustainable seafood menu and proud to be a Platinum Sustainable Seafood Alliance partner based on recommendations from Aquarium of the Bay.",
-                        url: "https://fogharbor.com/",
-                        lat: "37.809669",
-                        long: "-122.409988"
-                      },
-                      {
-                        name: "Aphotic",
-                        address: "816 Folsom Street, San Francisco, CA 94107",
-                        statement: "Aphotic Restaurant was born out of necessity. Chef Peter Hemsley set out to establish a best-practice seafood restaurant with transparency and traceability as core objectives, all while delivering unparalleled quality and creative intrigue for the benefit of our guests.",
-                        url:"https://aphoticrestaurant.com/",
-                        lat: "37.781840",
-                        long: "-122.401740"
-                      }
-
-  ];
-
+ 
   const sanFrancisco = {lat: 37.7749, lng: -122.407234};
   const [selectedPlace, setSelectedPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
@@ -62,10 +32,10 @@ const Index = (props: PageProps) => {
   const position = {lat: DEFAULT_PLACE.lat, lng: DEFAULT_PLACE.long};
 
   const Markers = () => {
-    return restaurants.map((restaurant, index) => (
+    return restaurantList.map((restaurant: any, index: number) => (
       <Marker
         key={index}
-        position={{ lat: parseFloat(restaurant.lat), lng: parseFloat(restaurant.long) }}
+        position={{ lat: parseFloat(restaurant.geometry.location.lat), lng: parseFloat(restaurant.geometry.location.lng) }}
         onClick={() => ""}
       />
     ));
@@ -127,12 +97,15 @@ const Index = (props: PageProps) => {
               defaultCenter={sanFrancisco}
               gestureHandling={'greedy'}
               disableDefaultUI={true}
-            />
+            >
+              <Markers />
+            </Map>
             <CustomMapControl
               controlPosition={ControlPosition.TOP}
               onPlaceSelect={setSelectedPlace}
             />
             <MapHandler place={selectedPlace} />
+            
           </APIProvider>
         </div>
       )
@@ -146,7 +119,7 @@ const Index = (props: PageProps) => {
       {drawMap()}
       <div>
         <div>Other seafood restauraunts in {otherRestaurantsHeader()}</div>
-        {otherRestaurants()}
+        <RestaurantAccordian restaurants={restaurantList} />
       </div>
     </Layout>
   )
