@@ -5,8 +5,7 @@ export default {
   content: [
     "./src/pages/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/flowbite-react/**/*.js",
-    flowbite.content(),
+    flowbite.content(), // For Netlify, I also just turn purging off
   ],
   plugins: [
     require("flowbite/plugin")
