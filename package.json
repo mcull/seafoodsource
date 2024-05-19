@@ -22,6 +22,9 @@
     "react-json-pretty": "^2.2.0",
     "react-webcam": "^7.2.0"
   },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "^2.0.0"
+  },
   "keywords": [
     "sustainable seafood"
   ],
