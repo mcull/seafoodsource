@@ -5,9 +5,10 @@ export default {
   content: [
     "./src/pages/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite-react/**/*.js",
     flowbite.content(),
   ],
   plugins: [
-    flowbite.plugin(),
+    require("flowbite/plugin")
   ],
 };
