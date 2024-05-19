@@ -6,7 +6,7 @@ module.exports = {
     author: `@mcull`,
   },
   flags: {
-    THE_FLAG: false
+    //THE_FLAG: false
   },
   plugins: [
     `gatsby-plugin-netlify`,
@@ -19,6 +19,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-image`,
+    'gatsby-plugin-postcss',
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {

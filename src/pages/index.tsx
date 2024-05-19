@@ -13,7 +13,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SubNav from "../components/subnav"
 import { StaticImage } from "gatsby-plugin-image"
-import '../styles/flowbite.css';
 
 const DEFAULT_PLACE = 
   { name: "San Francisco",
